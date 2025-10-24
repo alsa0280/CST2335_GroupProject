@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             // images row
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children:[
                 returnFormattedImage('images/boat.jpg')!,
                 returnFormattedImage('images/car.jpg')!
