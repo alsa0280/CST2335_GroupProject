@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
       },
       title: 'CST2355 Group Project',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        useSystemColors: true,
       ),
       home: const MyHomePage(title: 'CST2355 Group Project'),
     );
@@ -45,6 +46,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var homeButtonPadding = 5.0;
   var homeButtonTextStyle = TextStyle(fontSize: 30, color: Colors.black);
+  var homeButtonFixedWidth = 300.0;
+
+  Widget? returnFormattedHomeButton(String? routeName, String? buttonText){
+    return Padding(
+        padding: EdgeInsets.all(homeButtonPadding),
+        child: Container(
+            width: homeButtonFixedWidth,
+            child:ElevatedButton(
+                onPressed: (){Navigator.pushNamed(context, routeName!);},
+                child: Text(buttonText!, style: homeButtonTextStyle)
+            )
+        )
+    );
+  }
+
+  Widget? returnFormattedImage(String? imageSource){
+    return Padding(
+      padding: EdgeInsets.all(15),
+      child: CircleAvatar(
+          radius: 150,
+          backgroundImage: AssetImage(
+              imageSource!
+          )
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,33 +84,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.all(homeButtonPadding),
-              child: ElevatedButton(
-                  onPressed: (){Navigator.pushNamed(context, 'customerList');},
-                  child: Text("Customer List", style: homeButtonTextStyle),
-              )
+            // images row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children:[
+                returnFormattedImage('images/boat.jpg')!,
+                returnFormattedImage('images/car.jpg')!
+              ]
             ),
-            Padding(
-                padding: EdgeInsets.all(homeButtonPadding),
-                child: ElevatedButton(
-                    onPressed: (){Navigator.pushNamed(context, 'carsForSale');},
-                    child: Text("Cars For Sale", style: homeButtonTextStyle)
-                )
+            // first two buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                returnFormattedHomeButton("boatsForSale" , "Boat List")!,
+                returnFormattedHomeButton("carsForSale" , "Car List")!,
+              ]
             ),
-            Padding(
-                padding: EdgeInsets.all(homeButtonPadding),
-                child: ElevatedButton(
-                    onPressed: (){Navigator.pushNamed(context, 'boatsForSale');},
-                    child: Text("Boats For Sale", style: homeButtonTextStyle)
-                )
-            ),
-            Padding(
-                padding: EdgeInsets.all(homeButtonPadding),
-                child: ElevatedButton(
-                    onPressed: (){Navigator.pushNamed(context, 'purchaseOffer');},
-                    child: Text("Purchase Offer", style: homeButtonTextStyle)
-                )
+            // next two buttons
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  returnFormattedHomeButton("customerList" , "Customer List")!,
+                  returnFormattedHomeButton("purchaseOffer" , "Purchase Offer")!
+                ]
             )
           ]
         )
