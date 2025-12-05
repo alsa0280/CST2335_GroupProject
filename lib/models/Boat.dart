@@ -6,12 +6,12 @@ import 'package:floor/floor.dart';
 @entity
 class Boat {
   /// A static counter used for ID generation logic.
-  static int ID = 1;
+  final int? id;
 
   /// The unique identifier for the boat.
   /// Marked as the primary key.
-  @primaryKey
-  int id;
+  ///@primaryKey
+  ///int id;
 
   /// The year the boat was built.
   int yearBuilt;
@@ -38,9 +38,10 @@ class Boat {
     this.powerType,
     this.price,
     this.address,
-  ) {
-    if (this.id > ID) {
-      ID = this.id + 1;
-    }
-  }
+  );
+  //{
+    ///if (this.id > ID) {
+      ///ID = this.id + 1;
+    ///}
+  ///}
 }
