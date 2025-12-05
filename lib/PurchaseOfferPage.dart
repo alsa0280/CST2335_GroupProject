@@ -505,6 +505,7 @@ class PurchaseOfferPageState extends State<PurchaseOfferPage> {
             AppLocalizations.of(context)!.translate("NoPurchaseOffers")!,
             style: myFontStyle,
           )
+
             : //else, or false condition
           ListView.builder(
             shrinkWrap: true,
